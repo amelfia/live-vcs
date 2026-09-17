@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+snapshots/
+snapshot_hashes.json
+*.als
+.DS_Store
+EOF
