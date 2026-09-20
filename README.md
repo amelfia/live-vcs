@@ -1,7 +1,7 @@
 
-# Ableton VCS
+# live-vcs
 
-![Tests](https://github.com/amelfia/ableton-vcs/actions/workflows/test.yml/badge.svg)
+![Tests](https://github.com/amelfia/live-vcs/actions/workflows/test.yml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -40,8 +40,10 @@ Ableton Live (Editor)
                              ▼                             ▼
                     [snapshot_hashes.json]            [snapshots/]
                       (DAG / Branch Pointer)      (Immutable ALS copies)
+```
 
-History Graph Demo
+## History Graph Demo
+``` text
 Run graph inside the CLI to visualize the project timeline:
 
 * 7f2b1a4 Add vocal chop processing (vocal-chop)
@@ -52,52 +54,79 @@ Run graph inside the CLI to visualize the project timeline:
 |/
 * 1a9b2c3 Initial project session setup
 main
+``` 
+## Commands
 
-Commands
-Command	Description
-graph	Render ASCII directed acyclic history graph of all branches and commits
-branch <name>	Create a new branch pointing to the current commit
-switch <name>	Switch working pointer to another branch
-load	Restore project workspace to a specific commit hash
-quit	Exit the CLI watcher cleanly
-Getting Started
-Prerequisites
-Python 3.10+
-uv or standard venv
-Installation
-Clone the repository:
+| Command | Description |
+|---------|-------------|
+| `graph` | Render ASCII directed acyclic history graph of all branches and commits |
+| `branch <name>` | Create a new branch pointing to the current commit |
+| `switch <name>` | Switch working pointer to another branch |
+| `load` | Restore project workspace to a specific commit hash |
+| `quit` | Exit the CLI watcher cleanly |
 
-git clone https://github.com/amelfia/ableton-vcs.git
-cd ableton-vcs
 
-Create virtual environment and install dependencies:
+## Prerequisites
 
-# Using uv (recommended)
+- Python 3.10+
+- [uv](https://github.com/astral-sh/uv) or standard Python `venv`
+
+## Installation
+
+**1. Clone the repository**
+
+```bash
+git clone https://github.com/amelfia/live-vcs.git
+cd live-vcs
+```
+
+**2. Create a virtual environment and install dependencies**
+
+Using uv (recommended):
+
+```bash
 uv venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
+```
 
-# Or using standard pip
+Or using standard pip:
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+```
+
+## Usage
 
 Run the tool:
 
+```bash
 ./main.sh
-# Or directly via Python:
+```
+
+Or directly via Python:
+
+```bash
 python src/main.py
+```
 
 Enter the path to your Ableton project directory when prompted.
 
-Running Tests
-The test suite covers branch pointers, hash generation, snapshot resolution, and handler error boundaries:
+## Running Tests
 
+The test suite covers branch pointers, hash generation, snapshot resolution, and handler error boundaries.
+
+```bash
 ./test.sh
+```
 
-Platform Support
-macOS: Native (open)
-Windows: Native (start)
-Linux: Native (xdg-open)
+## Platform Support
 
+| Platform | Support | Opener |
+|----------|---------|--------|
+| macOS | Native | `open` |
+| Windows | Native | `start` |
+| Linux | Native | `xdg-open` |
 
