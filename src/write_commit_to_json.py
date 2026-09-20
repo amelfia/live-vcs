@@ -1,3 +1,4 @@
+import os 
 from datetime import datetime
 from typing import Any
 from hash_generator import hash_generator
@@ -5,6 +6,7 @@ from load_json import load_json, save_json, commit_structure
 from snapshot import snapshot, snapshot_dir_for_json
 from input_lock import safe_input
 from branch import current_branch
+from constants import PROMPT
 
 def commit_duplicate(branch: dict[str, Any], file_hash: str) -> bool:
     children: list[dict[str, str]] = branch.get("children", [])
@@ -26,10 +28,13 @@ def write_commit_to_json(als_file_path: str, json_file_path: str) -> None:
         return
 
     timestamp = datetime.now().isoformat()
-    print(f"\n [Change detected] File saved: {als_file_path}")
+    print(f"\n\n--- [Change detected] File saved: {os.path.basename(als_file_path)} ---")
     annotation = safe_input("Describe the changes you made: ").strip()
+    print("--------------------------------------------------\n")
 
     snapshot(als_file_path, file_hash, snapshot_dir_for_json(json_file_path), timestamp)
 
     current["children"].append(commit_structure(file_hash, annotation, timestamp))
     save_json(data, json_file_path)
+
+    print(PROMPT.format(branch=data["pointer"]), end="", flush=True)
