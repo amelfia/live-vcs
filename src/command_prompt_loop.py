@@ -1,6 +1,6 @@
 import sys
-import os
 import select
+import time
 
 from constants import PROMPT
 from display_graph import display_graph
@@ -20,7 +20,7 @@ def command_prompt_loop(json_file_path: str) -> None:
 
     while True:
         if watcher_pending.is_set():
-            watcher_pending.wait(timeout=0.2)
+            time.sleep(0.2)
             continue
 
         if not _line_ready():
