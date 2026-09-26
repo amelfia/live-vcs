@@ -44,16 +44,16 @@ Ableton Live (Editor)
 
 ## History Graph Demo
 ``` text
-Run graph inside the CLI to visualize the project timeline:
-
-* 7f2b1a4 Add vocal chop processing (vocal-chop)
+* d4a2f81 Main synth melody sketch
 |
-* 3c8e190 Sidechain sub bass to kick
-|
-| * d4a2f81 Main synth melody sketch (main)
+* 1a9b2c3 synth double
+|\
+| * 7f2b1a4 Add vocal chop processing (vocal-chop)
+| |
+| * 3c8e190 Sidechain sub bass to kick
 |/
-* 1a9b2c3 Initial project session setup
-main
+|
+* 3434343 init
 ``` 
 ## Commands
 
