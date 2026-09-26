@@ -10,9 +10,8 @@ def forked_from_hash(data: VCSData) -> dict[str, list[str]]:
     for branch in data["snapshots"]:
         if "branched_from" in branch and branch["children"]:
             key = branch["branched_from"]["hash"]
-            if key not in fork_dict:
-                fork_dict[key] = []
-            fork_dict[key].append(branch["branch"])
+            if key:
+                fork_dict.setdefault(key, []).append(branch["branch"])
     return fork_dict
 
 
@@ -22,33 +21,31 @@ def display_graph(json_file_path: str) -> str:
 
 
 def render_graph(data: VCSData) -> str:
+    branches_by_name: dict[str, BranchDict] = {b["branch"]: b for b in data["snapshots"]}
+
     fork_dict = forked_from_hash(data)
-    branches_by_name: dict[str, BranchDict] = {
-        b["branch"]: b for b in data["snapshots"]
-    }
     out: list[str] = []
 
-    def render(branch: BranchDict, prefix: str) -> None:
-        commits = list(reversed(branch["children"]))
+    def render_branch(branch: BranchDict, is_main: bool) -> None:
+        commits = list(reversed(branch.get("children", [])))
+        prefix = "" if is_main else "| "
 
         for index, commit in enumerate(commits):
-            tip = (
-                f" ({branch['branch']})"
-                if branch["branch"] != "main" and index == 0
-                else ""
-            )
-            line = f"* {commit['hash'][:7]} {commit['annotation']}{tip}"
-            out.append(prefix + line)
+            tag = f" ({branch['branch']})"if index == 0 and not is_main else ""
+            out.append(f"{prefix}* {commit['hash'][:7]} {commit['annotation']}{tag}")
+
 
             for child_name in fork_dict.get(commit["hash"], []):
                 child = branches_by_name[child_name]
-                out.append(f"{prefix}|")
-                render(child, prefix + "    ")
+                out.append("|\\")
+                render_branch(child, is_main=False)
+                out.append("|/")
 
             if index < len(commits) - 1:
                 out.append(f"{prefix}|")
 
     if "main" in branches_by_name:
-        render(branches_by_name["main"], "")
-        out.append("main")
+        render_branch(branches_by_name["main"], is_main=True)
+
     return "\n".join(out) + "\n"
+

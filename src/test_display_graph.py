@@ -54,6 +54,17 @@ class TestDisplayGraph(unittest.TestCase):
         result = render_graph(data)
         self.assertNotIn("(main)", result)
 
+    def test_render_graph_exact_output(self):
+        data = fake_data()
+        expected = (
+            "* bbb2222 drums\n"
+            "|\n"
+            "* aaa1111 init\n"
+            "|\\\n"
+            "| * ccc3333 synth (new_slice)\n"
+            "|/\n"
+        )
+        self.assertEqual(render_graph(data), expected)
         
 if __name__ == "__main__":
     unittest.main()
