@@ -7,7 +7,7 @@
 
 A lightweight, automated version control system tailored for **Ableton Live** projects.
 
-Standard VCS tools like Git struggle with audio production: Ableton `.als` files are gzipped XML binaries, and saving manually interrupts the creative workflow. Ableton VCS automatically detects project saves in the background, generates content digests of the uncompressed XML, and manages an annotated snapshot history with branching, restoring, and DAG graph visualization.
+Standard VCS tools like Git struggle with audio production: Ableton `.als` files are gzipped XML binaries, and saving manually interrupts the creative workflow. live-vcs automatically detects project saves in the background, generates content digests of the uncompressed XML, and manages an annotated snapshot history with branching, restoring, and DAG graph visualization.
 
 ---
 
