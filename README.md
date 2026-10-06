@@ -7,6 +7,8 @@
 
 A lightweight, automated version control system tailored for **Ableton Live** projects.
 
+## Motivation
+
 Standard VCS tools like Git struggle with audio production: Ableton `.als` files are gzipped XML binaries, and saving manually interrupts the creative workflow. live-vcs automatically detects project saves in the background, generates content digests of the uncompressed XML, and manages an annotated snapshot history with branching, restoring, and DAG graph visualization.
 
 ---
@@ -55,23 +57,13 @@ Ableton Live (Editor)
 |
 * 3434343 init
 ``` 
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `graph` | Render ASCII directed acyclic history graph of all branches and commits |
-| `branch <name>` | Create a new branch pointing to the current commit |
-| `switch <name>` | Switch working pointer to another branch |
-| `load` | Restore project workspace to a specific commit hash |
-| `quit` | Exit the CLI watcher cleanly |
-
 
 ## Prerequisites
 
 - Python 3.10+
 - [uv](https://github.com/astral-sh/uv) or standard Python `venv`
 
-## Installation
+## Quick Start
 
 **1. Clone the repository**
 
@@ -97,9 +89,6 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-
-## Usage
-
 Run the tool:
 
 ```bash
@@ -114,13 +103,30 @@ python src/main.py
 
 Enter the path to your Ableton project directory when prompted.
 
-## Running Tests
+
+## Usage
+
+| Command | Description |
+|---------|-------------|
+| `graph` | Render ASCII directed acyclic history graph of all branches and commits |
+| `branch <name>` | Create a new branch pointing to the current commit |
+| `switch <name>` | Switch working pointer to another branch |
+| `load` | Restore project workspace to a specific commit hash |
+| `quit` | Exit the CLI watcher cleanly |
+
+## Contributing
+
+### Run the test suite
 
 The test suite covers branch pointers, hash generation, snapshot resolution, and handler error boundaries.
 
 ```bash
 ./test.sh
 ```
+
+### Submit a pull request
+
+Fork the repository and open a pull request.
 
 ## Platform Support
 
