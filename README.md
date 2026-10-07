@@ -6,6 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 A lightweight, automated version control system tailored for **Ableton Live** projects.
+
 ![demo](assets/demo.gif)
 
 ## Motivation
