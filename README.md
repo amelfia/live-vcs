@@ -20,8 +20,8 @@ Standard VCS tools like Git struggle with audio production: Ableton `.als` files
 - **Automated Save Detection:** Listens to filesystem events using `watchdog` to capture project states the instant you save in Ableton (`Cmd+S` / `Ctrl+S`).
 - **Gzip XML Hashing:** Inflates `.als` archives in-memory and digests only the raw XML structure via MD5, ignoring filesystem metadata noise.
 - **Branching & Directed Graph:** Full support for branching workflows (`branch`, `switch`) and an ASCII-rendered DAG history graph.
-- **In-Place Workspace Restoration:** Restoring a commit (`load`) overwrites the active project file directly, preserving Ableton's relative sample paths while retaining immutable archives.
-- **Thread-Safe CLI Loop:** Coordinates background file watchers and user terminal commands concurrently using non-blocking I/O (`select.select`) and thread synchronization primitives.
+- **In-Place Workspace Restoration:** Restoring a commit (`load`) overwrites the active project file directly.
+- **Thread-Safe CLI Loop:** Coordinates background file watchers and user terminal commands concurrently using non-blocking I/O (`select.select`) and thread synchronization.
 
 ---
 
