@@ -132,9 +132,9 @@ Fork the repository and open a pull request.
 
 ## Platform Support
 
-| Platform | Support | Opener |
-|----------|---------|--------|
-| macOS | Native | `open` |
-| Windows | Native | `start` |
-| Linux | Native | `xdg-open` |
+| Platform | Status |
+|----------|---------|
+| macOS | Supported `tested` |
+| Linux | Should Work `untested` |
+| Windows | Not yet supported |
 
